@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cc.shen0d.mapper.UserMapper">
+
+	<select id="getOne" parameterType="String" resultType="User">
+		select * from user where username =#{username};
+	</select>
+	
+	<select id="getAll" resultType="User">
+		select * from user;
+	</select>
+	<!-- 注册用户 -->
+	<insert id="register" parameterType="User" useGeneratedKeys="true" keyProperty="id" >
+		insert into user (username,password,email,question,answer) vlaues (#{username},#{password},#{email},#{question},#{answer});
+	</insert>
+	
+	<update id="update" parameterType="User" >
+		update user set password=#{password},email={#email},question=#{question},answer=#{answer} where username=#{username};
+	</update>
+	
+	<delete id="delete" parameterType="User">
+		delete form user where username=#{username};
+	</delete>
+	
+	<select id="login" parameterType="user" resultType="User">
+		select * from user where username=#{username} and password =#{password};
+	</select>
+
+</mapper>
