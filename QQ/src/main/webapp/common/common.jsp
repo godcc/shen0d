@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	String context = request.getContextPath();
-	request.setAttribute("ctx", context);
+	application.setAttribute("ctx", context);
 	out.write(context);
 %>
 
@@ -13,7 +13,6 @@
 var ctx =${ctx}+"/"
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>公共引入页</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/lib/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/lib/bootstrap-table/bootstrap-table.min.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/lib/zTree/zTreeStyle/zTreeStyle.css">

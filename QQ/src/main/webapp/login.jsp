@@ -1,44 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<%@ include file="common/common.jsp" %>
+<html lang="zh-cn">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录页面</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>后台登陆页面</title>
+<link href="${ctx}/common/css/signin.css" rel="stylesheet">
 </head>
-<jsp:include page="/common/common.jsp"></jsp:include>
+
 <body>
 
-	<div class="container">
-		<div align="center">
-			<form id="loginForm" class="form-horizontal">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">请输入用户名称</label>
-					<div class="col-sm-10">
-						<input class=" form-control" type="text" name="username" placeholder="请输入用户账户名">
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-2 control-label">请输入用户密码</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" name="password"  placeholder="请输入用户账户名">
-					</div>
-				</div>
-				<button class="btn btn-success" type="button" onclick="onLogin()">登录</button>
-			</form>
+	<div class="signin">
+		<div class="signin-head">
+			<img src="${ctx}/common/images/test/head_120.png" alt="" class="img-circle">
 		</div>
+		<form class="form-signin" id="loginForm" role="form">
+			<input type="text" name="username" class="form-control" placeholder="用户名" required
+				autofocus /> <input name="password" type="password" class="form-control"
+				placeholder="密码" required />
+			<button class="btn btn-lg btn-warning btn-block" type="button" onclick="onLogin()">登录</button>
+		</form>
 	</div>
 
-</body>
 
+
+</body>
 <script type="text/javascript">
+$(function(){
+	//监控键盘按下的回车键
+	$(window).keydown(function(event){
+		if(event.key=="Enter"||event.keyCode==13){
+			onLogin();
+		}
+	})
+	
+})
 function onLogin(){
 	$.customAjax({
 		url:"/login.do",
 		dataParams:$.serializeObj("#loginForm"),
 		success:function(data){
-			alert(data.msg)
+			$.msg(data.msg)
 			if(data.success){
 				top.location.href='/webSocket.jsp'
 			}
