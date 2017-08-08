@@ -39,8 +39,9 @@ public class LoginController extends BaseController {
 		} else {
 			request.getSession().setAttribute("user", login);
 			map.put("msg", "µÇÂ¼³É¹¦");
+			map.put("success", "true");
+
 		}
-		logger.info("123");
 		return map;
 	}
 

@@ -39,6 +39,9 @@ function onLogin(){
 		dataParams:$.serializeObj("#loginForm"),
 		success:function(data){
 			alert(data.msg)
+			if(data.success){
+				top.location.href='/webSocket.jsp'
+			}
 		}
 		
 	})

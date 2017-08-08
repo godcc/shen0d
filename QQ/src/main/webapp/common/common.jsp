@@ -3,6 +3,7 @@
 <%
 	String context = request.getContextPath();
 	request.setAttribute("ctx", context);
+	out.write(context);
 %>
 
 <!DOCTYPE html>
