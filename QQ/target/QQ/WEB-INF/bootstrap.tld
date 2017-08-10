@@ -35,10 +35,6 @@
 			<rtexprvalue>true</rtexprvalue> <!--可以使用EL -->
 		</attribute>
 		<attribute> <!--传入名配置属性 -->
-			<name>queryParam</name> <!--必须和ShowTable.java中的username同名 -->
-			<rtexprvalue>true</rtexprvalue> <!--可以使用EL -->
-		</attribute>
-		<attribute> <!--传入名配置属性 -->
 			<name>url</name> <!--必须和ShowTable.java中的username同名 -->
 			<required>yes</required>
 			<rtexprvalue>true</rtexprvalue> <!--可以使用EL -->
@@ -134,6 +130,7 @@
 		<description>表格创建</description>
 		<!--该标签名称（必须元素） -->
 		<name>tableColumn</name>
+		
 		<!--该标签处理类的全限定名（必须元素） -->
 		<tag-class>cc.shen0d.ui.main.TableColumn</tag-class>
 		<!--指明该标签主题类型） -->

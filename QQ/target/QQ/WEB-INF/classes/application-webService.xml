@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd
+        http://cxf.apache.org/jaxws  
+        http://cxf.apache.org/schemas/jaxws.xsd">
+	<!-- 配置websocket -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<!-- 高版本不需要 -->
+<!-- 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" /> -->
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<bean class="org.apache.cxf.interceptor.LoggingInInterceptor" id="loginInterceptor"></bean>
+
+	<bean id="WebServiceEnpoint" class="cc.shen0d.web.WebService.enpoint.WebServiceEnpoint"></bean>
+	
+	<jaxws:server id="testWebService"
+		serviceClass="cc.shen0d.web.WebService.enpoint.IWebServiceEnpoint"
+		address="/WebserviceTest">
+		<jaxws:serviceBean>
+			<ref bean="WebServiceEnpoint" />
+		</jaxws:serviceBean>
+		<jaxws:inInterceptors>
+			<ref bean="loginInterceptor" />
+			<!-- <ref bean="WebServiceInterceptor"/> -->
+		</jaxws:inInterceptors>
+	</jaxws:server>
+
+<!-- 	<jaxws:client id="webServiceClient" serviceClass="cc.shen0d.web.WebService.enpoint.IWebServiceEnpoint" address="http://localhost/WebService/WebserviceTest?wsdl"></jaxws:client> -->
+	
+
+</beans>

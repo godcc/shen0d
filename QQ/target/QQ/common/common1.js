@@ -69,6 +69,7 @@ tools.normal = function() {
 			var obj = {
 				url : url, // 请求后台的URL（*）
 				method : 'get', // 请求方式（*）
+				dataType:'JSON',
 //				toolbar : '#toolbar', // 工具按钮用哪个容器
 				striped : true, // 是否显示行间隔色
 				cache : false, // 是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
@@ -76,7 +77,7 @@ tools.normal = function() {
 				sortable : false, // 是否启用排序
 				sortOrder : "asc", // 排序方式
 //				queryParams : params,// 传递参数（*）
-				sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
+				sidePagination : "client", // 分页方式：client客户端分页，server服务端分页（*）
 				pageNumber : 1, // 初始化加载第一页，默认第一页
 				pageSize : 10, // 每页的记录行数（*）
 				pageList : [ 10, 25, 50, 100 ], // 可供选择的每页的行数（*）
@@ -93,6 +94,7 @@ tools.normal = function() {
 				detailView : false, // 是否显示父子表
 			}
 			$.extend(obj,options);
+			console.log(obj)
 			$(follow).bootstrapTable(obj);
 
 		}

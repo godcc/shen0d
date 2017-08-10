@@ -28,11 +28,11 @@
 
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="*.do"/>
+			<mvc:mapping path="*.do" />
 			<bean class="cc.shen0d.web.interceptor.TestInterceptor"></bean>
 		</mvc:interceptor>
 
 	</mvc:interceptors>
-
+	<import resource="application-webSocket.xml" />
 
 </beans>

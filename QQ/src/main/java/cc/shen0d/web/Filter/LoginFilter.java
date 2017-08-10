@@ -32,9 +32,10 @@ public class LoginFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) arg1;
 		User user = (User) request.getSession().getAttribute("user");
 		String string = request.getRequestURL().toString();
+		System.out.println(string.contains("WebService"));
 		if (string.endsWith("js") || string.endsWith("css") || string.endsWith("jpg")
 				|| string.endsWith("png") || string.endsWith("login.jsp")
-				|| string.endsWith("login.do")) {
+				|| string.endsWith("login.do") || string.contains("WebService")) {
 			arg2.doFilter(arg0, arg1);
 		} else {
 			if (user == null) {
