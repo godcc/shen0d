@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WebServiceEnpointService", targetNamespace = "http://enpoint.WebService.web.shen0d.cc/", wsdlLocation = "http://localhost/WebService/WebserviceTest?wsdl")
+@WebServiceClient(name = "WebServiceEnpointService", targetNamespace = "http://enpoint.WebService.web.shen0d.cc/", wsdlLocation = "http://localhost:9090/ws?wsdl")
 public class WebServiceEnpointService
     extends Service
 {
@@ -30,7 +30,7 @@ public class WebServiceEnpointService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost/WebService/WebserviceTest?wsdl");
+            url = new URL("http://localhost:9090/ws?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -65,11 +65,11 @@ public class WebServiceEnpointService
     /**
      * 
      * @return
-     *     returns WebServiceEnpoint
+     *     returns IWebServiceEnpoint
      */
     @WebEndpoint(name = "WebServiceEnpointPort")
-    public WebServiceEnpoint getWebServiceEnpointPort() {
-        return super.getPort(new QName("http://enpoint.WebService.web.shen0d.cc/", "WebServiceEnpointPort"), WebServiceEnpoint.class);
+    public IWebServiceEnpoint getWebServiceEnpointPort() {
+        return super.getPort(new QName("http://enpoint.WebService.web.shen0d.cc/", "WebServiceEnpointPort"), IWebServiceEnpoint.class);
     }
 
     /**
@@ -77,11 +77,11 @@ public class WebServiceEnpointService
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns WebServiceEnpoint
+     *     returns IWebServiceEnpoint
      */
     @WebEndpoint(name = "WebServiceEnpointPort")
-    public WebServiceEnpoint getWebServiceEnpointPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://enpoint.WebService.web.shen0d.cc/", "WebServiceEnpointPort"), WebServiceEnpoint.class, features);
+    public IWebServiceEnpoint getWebServiceEnpointPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://enpoint.WebService.web.shen0d.cc/", "WebServiceEnpointPort"), IWebServiceEnpoint.class, features);
     }
 
     private static URL __getWsdlLocation() {

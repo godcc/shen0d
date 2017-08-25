@@ -40,6 +40,9 @@
     	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
     
+    <!-- 获取spring 上下文路径的工具类 -->
+    <bean class="cc.shen0d.util.ApplicationContextUtil"></bean>
+    
    
 	
 	<import resource="application-dao.xml"/>

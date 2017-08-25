@@ -7,7 +7,8 @@ import cc.shen0d.pojo.entity.WebServiceTest;
 public class WebServiceEnpoint implements IWebServiceEnpoint {
 
 	public WebServiceTest getWebServiceTest(String name, String password) {
-		System.out.println(name);
+		System.out.println(55555555);
+		System.err.println(name);
 		return new WebServiceTest(name, password);
 	}
 

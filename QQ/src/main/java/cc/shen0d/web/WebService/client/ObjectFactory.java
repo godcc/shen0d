@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the cc.shen0d.Webservicetest1 package. 
+ * generated in the cc.shen0d.web.WebService.client package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -28,7 +28,7 @@ public class ObjectFactory {
     private final static QName _GetWebServiceTest_QNAME = new QName("http://enpoint.WebService.web.shen0d.cc/", "getWebServiceTest");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cc.shen0d.Webservicetest1
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: cc.shen0d.web.WebService.client
      * 
      */
     public ObjectFactory() {

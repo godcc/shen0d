@@ -29,11 +29,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "webServiceTest", propOrder = { "name", "password" })
 public class WebServiceTest {
 
-	@Override
-	public String toString() {
-		return "WebServiceTest [name=" + name + ", password=" + password + "]";
-	}
-
 	protected String name;
 	protected String password;
 
@@ -83,6 +78,11 @@ public class WebServiceTest {
 	 */
 	public void setPassword(String value) {
 		this.password = value;
+	}
+
+	@Override
+	public String toString() {
+		return "WebServiceTest [name=" + name + ", password=" + password + "]";
 	}
 
 }
