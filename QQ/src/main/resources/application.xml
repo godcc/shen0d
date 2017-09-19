@@ -12,12 +12,28 @@
     http://www.springframework.org/schema/tx/spring-tx.xsd
     http://www.springframework.org/schema/aop  
     http://www.springframework.org/schema/aop/spring-aop.xsd">
-    
-    
-    <!-- 引入资源文件 -->
-    
-    <context:property-placeholder location="classpath:db.properties"/>
-    
+
+
+
+	<bean id="threadPool"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 核心线程数 -->
+		<property name="corePoolSize" value="10" />
+		<!-- 最大线程数 -->
+		<property name="maxPoolSize" value="50" />
+		<!-- 队列最大长度 >=mainExecutor.maxSize -->
+		<property name="queueCapacity" value="1000" />
+		<!-- 线程池维护线程所允许的空闲时间 -->
+		<property name="keepAliveSeconds" value="300" />
+		<!-- 线程池对拒绝任务(无线程可用)的处理策略 -->
+		<property name="rejectedExecutionHandler">
+			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+		</property>
+	</bean>
+	<!-- 引入资源文件 -->
+
+	<context:property-placeholder location="classpath:db.properties" />
+
 	<!-- 注册数据源 -->
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
 		<property name="driverClassName" value="${db.driverName}"></property>
@@ -25,29 +41,37 @@
 		<property name="password" value="${db.password}"></property>
 		<property name="url" value="${db.url}"></property>
 	</bean>
-	
+
 	<!-- 注册mybatis的sqlsessionFactory -->
-	<bean class="org.mybatis.spring.SqlSessionFactoryBean"  id="sqlSessionFactory">
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="typeAliasesPackage" value="cc.shen0d.pojo.entity"></property>
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
-		<property name="mapperLocations"  value="classpath:cc/shen0d/mapperXml/*Mapper.xml" />
+		<property name="mapperLocations" value="classpath:cc/shen0d/mapperXml/*Mapper.xml" />
 	</bean>
-	
+
 	<!-- 扫描注解service -->
-	
+
 	<context:component-scan base-package="cc.shen0d.service">
-    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-    </context:component-scan>
-    
-    <!-- 获取spring 上下文路径的工具类 -->
-    <bean class="cc.shen0d.util.ApplicationContextUtil"></bean>
-    
-   
-	
-	<import resource="application-dao.xml"/>
-	
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+
+	<!-- 获取spring 上下文路径的工具类 -->
+	<bean class="cc.shen0d.util.ApplicationContextUtil"></bean>
+
+
+ 	<!-- 委派过滤类 -->
+ 	<bean id="AopFilter" class="cc.shen0d.web.Filter.AopFilter">
+ 		<property name="filters">
+ 			<list>
+ 				<bean class="cc.shen0d.web.Filter.LoginFilter"></bean>
+ 			</list>
+ 		</property>
+ 	</bean>
+
+	<import resource="application-dao.xml" />
+
 	<import resource="application-webService.xml" />
-	
-	
+
 </beans>
